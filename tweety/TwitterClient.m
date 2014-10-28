@@ -52,6 +52,7 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
         // Trying to get a user's credentials
         [[TwitterClient sharedInstance] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             User* user = [[User alloc] initWithDictionary:responseObject];
+            [User setUser:user];
             NSLog(@"User name: %@", user.name);
             if (self.loginCompletion != nil) {
                 self.loginCompletion(user, nil);
@@ -65,6 +66,16 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
         
     } failure:^(NSError *error) {
         NSLog(@"Failed to get the access token! %@", error);
+    }];
+}
+
+- (void)homeTimelineWithParams:(NSDictionary*)params completion:(void (^)(NSArray* tweets, NSError* error))completion {
+    [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray* tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error while fetching tweets: %@", error);
+        completion(nil, error);
     }];
 }
 
