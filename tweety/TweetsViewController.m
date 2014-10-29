@@ -10,9 +10,12 @@
 #import "User.h"
 #import "TwitterClient.h"
 #import "Tweet.h"
+#import "TweetViewCell.h"
 
 @interface TweetsViewController ()
 - (IBAction)onLogout:(id)sender;
+
+@property (strong, nonatomic) NSArray* tweets;
 
 @end
 
@@ -21,16 +24,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        for (Tweet* tweet in tweets) {
-            NSLog(@"Tweet text: %@", tweet.text);
-        }
+        self.tweets = tweets;
+        NSLog(@"Tweet List size: %ld", self.tweets.count);
+        [self.tweetList reloadData];
     }];
+    self.tweetList.delegate = self;
+    self.tweetList.dataSource = self;
+    
+    [self.tweetList registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
+    self.tweetList.rowHeight = 100;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TweetViewCell* cell = [self.tweetList dequeueReusableCellWithIdentifier:@"TweetViewCell"];
+    [cell initWithTweet:self.tweets[indexPath.row]];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

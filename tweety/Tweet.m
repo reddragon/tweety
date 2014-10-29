@@ -19,6 +19,8 @@
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         self.createdAt = [formatter dateFromString:createdAt];
+        self.imageURL = [NSURL URLWithString:dictionary[@"user"][@"profile_image_url"]];
+        NSLog(@"Dictionary: %@", dictionary);
     }
     return self;
 }
