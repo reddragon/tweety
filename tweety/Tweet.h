@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDate* createdAt;
 @property (nonatomic, strong) User* user;
 @property (nonatomic, strong) NSURL* imageURL;
+@property (nonatomic, strong) NSString* tId;
 
 - (id)initWithDictionary:(NSDictionary*)dictionary;
 + (NSArray *)tweetsWithArray:(NSArray*)array;

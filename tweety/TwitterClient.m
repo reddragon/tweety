@@ -93,4 +93,36 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)retweetWithParams:(NSDictionary *)params completion:(void (^)(NSError *))completion {
+    
+    NSString* url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", params[@"id"]];
+    
+    [self POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Looks like it succeeded: %@", responseObject);
+        if (completion != nil) {
+            completion(nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Uh, oh. It failed: %@", error);
+        if (completion != nil) {
+            completion(error);
+        }
+    }];
+}
+
+- (void)favoriteWithParams:(NSDictionary *)params completion:(void (^)(NSError *))completion {
+    
+   [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Looks like it succeeded: %@", responseObject);
+        if (completion != nil) {
+            completion(nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Uh, oh. It failed: %@", error);
+        if (completion != nil) {
+            completion(error);
+        }
+    }];
+}
+
 @end

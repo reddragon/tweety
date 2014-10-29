@@ -8,12 +8,18 @@
 
 #import "TweetDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
 
 @interface TweetDetailViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimestamp;
 @property (strong, nonatomic) IBOutlet UILabel *tweetText;
 @property (weak, nonatomic) Tweet* tweet;
+
+- (IBAction)onFavorite:(id)sender;
+- (IBAction)onRetweet:(id)sender;
+
+
 @end
 
 @implementation TweetDetailViewController
@@ -54,4 +60,13 @@
 }
 */
 
+- (IBAction)onFavorite:(id)sender {
+    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
+    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil];
+}
+
+- (IBAction)onRetweet:(id)sender {
+    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
+    [[TwitterClient sharedInstance] retweetWithParams:dict completion:nil];
+}
 @end
