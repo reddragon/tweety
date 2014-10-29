@@ -7,6 +7,7 @@
 //
 
 #import "TweetsViewController.h"
+#import "TweetDetailViewController.h"
 #import "User.h"
 #import "TwitterClient.h"
 #import "Tweet.h"
@@ -54,6 +55,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TweetDetailViewController* tdvc = [[TweetDetailViewController alloc] initWithTweet:self.tweets[indexPath.row]];
+    [self presentViewController:tdvc animated:YES completion:nil];
 }
 
 /*

@@ -10,10 +10,10 @@
 #import "Tweet.h"
 
 @interface TweetViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *tweetImage;
-@property (strong, nonatomic) IBOutlet UILabel *timestamp;
 @property (strong, nonatomic) IBOutlet UILabel *tweetText;
 @property (weak, nonatomic) Tweet* tweet;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UILabel *tweetTimestamp;
 
 - (void)initWithTweet:(Tweet*)tweet;
 @end

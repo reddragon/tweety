@@ -27,9 +27,9 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
-    [self.timestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
+    [self.tweetTimestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
     
-    [self.tweetImage setImageWithURL:tweet.imageURL];
+    [self.profileImage setImageWithURL:tweet.imageURL];
 }
 
 @end

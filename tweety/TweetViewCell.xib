@@ -31,9 +31,9 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="timestamp" destination="My2-5c-GoI" id="L5b-Ox-1pM"/>
-                <outlet property="tweetImage" destination="p6y-x5-pWw" id="bl3-t1-lMY"/>
+                <outlet property="profileImage" destination="p6y-x5-pWw" id="TMQ-Z8-62W"/>
                 <outlet property="tweetText" destination="3TC-dB-tUi" id="7Ce-bg-Xow"/>
+                <outlet property="tweetTimestamp" destination="My2-5c-GoI" id="KQi-PY-1zB"/>
             </connections>
             <point key="canvasLocation" x="342" y="249"/>
         </tableViewCell>
