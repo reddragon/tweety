@@ -12,9 +12,11 @@
 #import "TwitterClient.h"
 #import "Tweet.h"
 #import "TweetViewCell.h"
+#import "ComposeViewController.h"
 
 @interface TweetsViewController ()
 - (IBAction)onLogout:(id)sender;
+- (IBAction)onCompose:(id)sender;
 
 @property (strong, nonatomic) NSArray* tweets;
 
@@ -56,7 +58,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TweetDetailViewController* tdvc = [[TweetDetailViewController alloc] initWithTweet:self.tweets[indexPath.row]];
-    [self presentViewController:tdvc animated:YES completion:nil];
+    [self.navigationController pushViewController:tdvc animated:YES];
 }
 
 /*
@@ -71,5 +73,11 @@
 
 - (IBAction)onLogout:(id)sender {
     [User logout];
+}
+
+- (IBAction)onCompose:(id)sender {
+    NSLog(@"Hitting onCompose");
+    ComposeViewController* cvc = [[ComposeViewController alloc] init];
+    [self.navigationController pushViewController:cvc animated:YES];
 }
 @end

@@ -79,4 +79,18 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)updateStatusWithParams:(NSDictionary *)params completion:(void (^)(NSError *))completion {
+    [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Looks like it succeeded: %@", responseObject);
+        if (completion != nil) {
+            completion(nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Uh, oh. It failed: %@", error);
+        if (completion != nil) {
+            completion(error);
+        }
+    }];
+}
+
 @end
