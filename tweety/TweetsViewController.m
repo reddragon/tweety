@@ -17,6 +17,7 @@
 @interface TweetsViewController ()
 - (IBAction)onLogout:(id)sender;
 - (IBAction)onCompose:(id)sender;
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 
 @property (strong, nonatomic) NSArray* tweets;
 
@@ -26,18 +27,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        self.tweets = tweets;
-        NSLog(@"Tweet List size: %ld", self.tweets.count);
-        [self.tweetList reloadData];
-    }];
     self.tweetList.delegate = self;
     self.tweetList.dataSource = self;
-    
     [self.tweetList registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     self.tweetList.rowHeight = 100;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tweetList insertSubview:self.refreshControl atIndex:0];
     
+    [self loadData];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)loadData {
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        if (tweets != nil) {
+            self.tweets = tweets;
+            NSLog(@"Tweet List size: %ld", self.tweets.count);
+            [self.tweetList reloadData];
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+        [self.refreshControl endRefreshing];
+    }];
+}
+
+- (void)onRefresh {
+    NSLog(@"Refresh called");
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
