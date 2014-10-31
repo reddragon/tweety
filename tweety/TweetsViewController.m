@@ -19,7 +19,7 @@
 - (IBAction)onCompose:(id)sender;
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 
-@property (strong, nonatomic) NSArray* tweets;
+@property (strong, nonatomic) NSMutableArray* tweets;
 
 @end
 
@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tweets = [[NSMutableArray alloc] init];
     self.tweetList.delegate = self;
     self.tweetList.dataSource = self;
     [self.tweetList registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
@@ -40,10 +41,20 @@
 }
 
 - (void)loadData {
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+    NSDictionary* params = nil;
+    if (self.tweets.count > 0) {
+        Tweet* t = self.tweets[0];
+        params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"since_id", nil];
+    }
+    [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
         if (tweets != nil) {
-            self.tweets = tweets;
-            NSLog(@"Tweet List size: %ld", self.tweets.count);
+            NSLog(@"Number of tweets received: %lu, size before: %lu", tweets.count, self.tweets.count);
+            
+            NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                                   NSMakeRange(0, tweets.count)];
+            [self.tweets insertObjects:tweets atIndexes:indexes];
+            
+            NSLog(@"Tweet list final size: %ld", self.tweets.count);
             [self.tweetList reloadData];
         } else {
             NSLog(@"Error: %@", error);
