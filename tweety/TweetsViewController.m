@@ -36,24 +36,39 @@
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tweetList insertSubview:self.refreshControl atIndex:0];
     
-    [self loadData];
+    UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loadingView startAnimating];
+    loadingView.center = tableFooterView.center;
+    [tableFooterView addSubview:loadingView];
+    self.tweetList.tableFooterView = tableFooterView;
+    
+    [self loadDataToTop:YES];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)loadData {
+- (void)loadDataToTop:(BOOL)refreshFromTop {
     NSDictionary* params = nil;
     if (self.tweets.count > 0) {
-        Tweet* t = self.tweets[0];
-        params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"since_id", nil];
+        if (refreshFromTop) {
+            Tweet* t = self.tweets[0];
+            params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"since_id", nil];
+        } else {
+            Tweet*t = self.tweets[self.tweets.count - 1];
+            params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"max_id", nil];
+        }
     }
     [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
         if (tweets != nil) {
             NSLog(@"Number of tweets received: %lu, size before: %lu", tweets.count, self.tweets.count);
             
-            NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+            if (refreshFromTop) {
+                NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
                                    NSMakeRange(0, tweets.count)];
-            [self.tweets insertObjects:tweets atIndexes:indexes];
-            
+                [self.tweets insertObjects:tweets atIndexes:indexes];
+            } else {
+                [self.tweets addObjectsFromArray:tweets];
+            }
             NSLog(@"Tweet list final size: %ld", self.tweets.count);
             [self.tweetList reloadData];
         } else {
@@ -65,7 +80,7 @@
 
 - (void)onRefresh {
     NSLog(@"Refresh called");
-    [self loadData];
+    [self loadDataToTop:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +91,9 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetViewCell* cell = [self.tweetList dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     [cell initWithTweet:self.tweets[indexPath.row]];
+    if (indexPath.row == self.tweets.count - 1) {
+        [self loadDataToTop:NO];
+    }
     return cell;
 }
 
