@@ -33,7 +33,12 @@
     [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
     [self.tweetTimestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
     
-    [self.profileImage setImageWithURL:tweet.imageURL];
+    [self.profileImage setImageWithURL:tweet.biggerImageURL];
+    [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
+    self.profileImage.clipsToBounds = YES;
+    self.profileImage.layer.borderWidth = 3.0f;
+    self.profileImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+
 }
 
 @end

@@ -19,7 +19,10 @@
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         self.createdAt = [formatter dateFromString:createdAt];
-        self.imageURL = [NSURL URLWithString:dictionary[@"user"][@"profile_image_url"]];
+        NSString* imageURLStr = dictionary[@"user"][@"profile_image_url"];
+        self.imageURL = [NSURL URLWithString:imageURLStr];
+        self.biggerImageURL = [NSURL URLWithString:[imageURLStr stringByReplacingOccurrencesOfString:@"normal" withString:@"bigger"]];
+        
         self.tId = dictionary[@"id"];
         self.retweetCount = dictionary[@"retweet_count"];
         self.favoriteCount = dictionary[@"favourite_count"];

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDate* createdAt;
 @property (nonatomic, strong) User* user;
 @property (nonatomic, strong) NSURL* imageURL;
+@property (nonatomic, strong) NSURL* biggerImageURL;
 @property (nonatomic, strong) NSString* tId;
 @property (nonatomic, strong) NSNumber* retweetCount;
 @property (nonatomic, strong) NSNumber* favoriteCount;
