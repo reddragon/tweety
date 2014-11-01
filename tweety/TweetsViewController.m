@@ -76,6 +76,12 @@
         }
         [self.refreshControl endRefreshing];
     }];
+    UIBarButtonItem* composeButton = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
+    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
+    
+    self.navigationItem.leftBarButtonItem = logoutButton;
+    self.navigationItem.rightBarButtonItem = composeButton;
+    
 }
 
 - (void)onRefresh {

@@ -15,39 +15,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibA-iK-ht1">
-                    <rect key="frame" x="267" y="60" width="49" height="30"/>
-                    <state key="normal" title="Logout">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onLogout:" destination="-1" eventType="touchUpInside" id="gSW-Y9-jtd"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-yk-QlP">
-                    <rect key="frame" x="0.0" y="100" width="320" height="468"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-yk-QlP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af3-JW-ajg">
-                    <rect key="frame" x="4" y="60" width="67" height="30"/>
-                    <state key="normal" title="Compose">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onCompose:" destination="-1" eventType="touchUpInside" id="Qxk-M3-Ysz"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="8lq-yk-QlP" firstAttribute="top" secondItem="af3-JW-ajg" secondAttribute="bottom" constant="10" id="0lo-c5-zPr"/>
-                <constraint firstAttribute="trailing" secondItem="ibA-iK-ht1" secondAttribute="trailing" constant="4" id="8wc-wd-hZZ"/>
                 <constraint firstAttribute="bottom" secondItem="8lq-yk-QlP" secondAttribute="bottom" id="A2H-rp-2L4"/>
                 <constraint firstItem="8lq-yk-QlP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E7V-Cn-7yQ"/>
-                <constraint firstItem="af3-JW-ajg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="4" id="P7u-I4-AGN"/>
-                <constraint firstItem="ibA-iK-ht1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="koI-pJ-161"/>
                 <constraint firstAttribute="trailing" secondItem="8lq-yk-QlP" secondAttribute="trailing" id="u9H-9u-J7N"/>
-                <constraint firstItem="af3-JW-ajg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="uaC-ti-ylx"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </view>

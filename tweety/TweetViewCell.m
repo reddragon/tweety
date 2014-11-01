@@ -25,7 +25,7 @@
     self.tweet = tweet;
     [self.tweetText setText:tweet.text];
     [self.realName setText:tweet.realName];
-    [self.handle setText:tweet.handle];
+    [self.handle setText:[NSString stringWithFormat:@"@%@", tweet.handle]];
     [self.retweetCount setText:[tweet.retweetCount stringValue]];
     [self.favoriteCount setText:[tweet.favoriteCount stringValue]];
     
