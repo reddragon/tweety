@@ -24,6 +24,10 @@
 - (void)initWithTweet:(Tweet *)tweet {
     self.tweet = tweet;
     [self.tweetText setText:tweet.text];
+    [self.realName setText:tweet.realName];
+    [self.handle setText:tweet.handle];
+    [self.retweetCount setText:[tweet.retweetCount stringValue]];
+    [self.favoriteCount setText:[tweet.favoriteCount stringValue]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];

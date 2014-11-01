@@ -21,6 +21,10 @@
         self.createdAt = [formatter dateFromString:createdAt];
         self.imageURL = [NSURL URLWithString:dictionary[@"user"][@"profile_image_url"]];
         self.tId = dictionary[@"id"];
+        self.retweetCount = dictionary[@"retweet_count"];
+        self.favoriteCount = dictionary[@"favourite_count"];
+        self.handle = dictionary[@"screen_name"];
+        self.realName = dictionary[@"user"][@"name"];
         // NSLog(@"Dictionary: %@", dictionary);
     }
     return self;

@@ -16,6 +16,10 @@
 @property (nonatomic, strong) User* user;
 @property (nonatomic, strong) NSURL* imageURL;
 @property (nonatomic, strong) NSString* tId;
+@property (nonatomic, strong) NSNumber* retweetCount;
+@property (nonatomic, strong) NSNumber* favoriteCount;
+@property (nonatomic, strong) NSString* realName;
+@property (nonatomic, strong) NSString* handle;
 
 - (id)initWithDictionary:(NSDictionary*)dictionary;
 + (NSArray *)tweetsWithArray:(NSArray*)array;

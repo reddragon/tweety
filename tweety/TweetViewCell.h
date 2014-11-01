@@ -14,6 +14,10 @@
 @property (weak, nonatomic) Tweet* tweet;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimestamp;
+@property (strong, nonatomic) IBOutlet UILabel *realName;
+@property (strong, nonatomic) IBOutlet UILabel *handle;
+@property (strong, nonatomic) IBOutlet UILabel *retweetCount;
+@property (strong, nonatomic) IBOutlet UILabel *favoriteCount;
 
 - (void)initWithTweet:(Tweet*)tweet;
 @end
