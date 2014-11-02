@@ -19,15 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jq-1l-N2D">
-                    <rect key="frame" x="14" y="482" width="49" height="30"/>
-                    <state key="normal" title="Submit">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onTweetSubmit:" destination="-1" eventType="touchUpInside" id="SmF-vJ-wfC"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0r9-a6-l4w">
                     <rect key="frame" x="8" y="70" width="80" height="70"/>
                     <constraints>
@@ -69,10 +60,8 @@
                 <constraint firstItem="0r9-a6-l4w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="W5q-2V-UjB"/>
                 <constraint firstItem="c4F-ZT-itz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Wwt-FC-qtk"/>
                 <constraint firstAttribute="trailing" secondItem="hq2-vw-i3e" secondAttribute="trailing" constant="10" id="afo-K7-mkJ"/>
-                <constraint firstItem="8jq-1l-N2D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="e6z-fz-hT8"/>
                 <constraint firstItem="c4F-ZT-itz" firstAttribute="leading" secondItem="0r9-a6-l4w" secondAttribute="trailing" constant="8" id="gRU-oP-z4g"/>
                 <constraint firstItem="hq2-vw-i3e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="k89-Hb-9jU"/>
-                <constraint firstItem="8jq-1l-N2D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="mPG-WS-EV7"/>
             </constraints>
             <point key="canvasLocation" x="141" y="164"/>
         </view>

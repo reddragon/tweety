@@ -41,6 +41,10 @@ NSString* const kPlaceholderStr = @"Say something.";
     self.tweetText.text = kPlaceholderStr;
     self.tweetText.textColor = [UIColor lightGrayColor];
     [self changeNumChars];
+    self.navigationItem.title = @"Compose";
+    
+    UIBarButtonItem* sendTweet = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetSubmit:)];
+    self.navigationItem.rightBarButtonItem = sendTweet;
 }
 
 - (void)changeNumChars {
@@ -96,7 +100,13 @@ NSString* const kPlaceholderStr = @"Say something.";
 */
 
 - (IBAction)onTweetSubmit:(id)sender {
-    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweetText.text, @"status", nil];
-    [[TwitterClient sharedInstance] updateStatusWithParams:dict completion:nil];
+    if (self.tweetText.text.length <= 140) {
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweetText.text, @"status", nil];
+        [[TwitterClient sharedInstance] updateStatusWithParams:dict completion:^(NSError *error) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+    } else {
+        NSLog(@"Can't do. Too long tweet!");
+    }
 }
 @end
