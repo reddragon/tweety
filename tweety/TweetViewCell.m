@@ -7,6 +7,7 @@
 //
 
 #import "TweetViewCell.h"
+#import "TwitterClient.h"
 #import "UIImageView+AFNetworking.h"
 
 @implementation TweetViewCell
@@ -24,8 +25,13 @@
 - (IBAction)onRetweet:(id)sender {
     if (self.tweet.retweeted == false) {
         self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] + 1];
+        
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
+        [[TwitterClient sharedInstance] retweetWithParams:dict completion:nil];
     } else {
         self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] - 1];
+        // TODO
+        // Remove the tweet.
     }
     self.tweet.retweeted = !self.tweet.retweeted;
     [self setButtonImages];
@@ -33,8 +39,11 @@
 }
 
 - (IBAction)onFavorite:(id)sender {
+    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
+    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil destroy:self.tweet.favorited];
     self.tweet.favorited = !self.tweet.favorited;
     [self setButtonImages];
+    
 }
 
 - (void)initWithTweet:(Tweet *)tweet {

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 
 @property (strong, nonatomic) NSMutableArray* tweets;
+@property (strong, nonatomic) TweetViewCell* prototypeCell;
 
 @end
 
@@ -97,6 +98,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (TweetViewCell *)prototypeBusinessCell {
+    if (_prototypeCell == nil) {
+        _prototypeCell = [self.tweetList dequeueReusableCellWithIdentifier:@"TweetViewCell"];
+    }
+    
+    return _prototypeCell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath:(NSIndexPath *)indexPath {
+    Tweet* t = self.tweets[indexPath.row];
+    self.prototypeCell.tweetText.text = t.text;
+    CGSize size = [self.prototypeBusinessCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 20;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -110,9 +110,16 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
     }];
 }
 
-- (void)favoriteWithParams:(NSDictionary *)params completion:(void (^)(NSError *))completion {
+- (void)favoriteWithParams:(NSDictionary *)params completion:(void (^)(NSError *))completion destroy:(BOOL)destroy {
     
-   [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString* endpoint;
+    if (destroy == true) {
+        endpoint = @"1.1/favorites/destroy.json";
+    } else {
+        endpoint = @"1.1/favorites/create.json";
+    }
+    
+   [self POST:endpoint parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Looks like it succeeded: %@", responseObject);
         if (completion != nil) {
             completion(nil);

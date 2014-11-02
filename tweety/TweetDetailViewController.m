@@ -62,7 +62,7 @@
 
 - (IBAction)onFavorite:(id)sender {
     NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
-    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil];
+    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil destroy:false];
 }
 
 - (IBAction)onRetweet:(id)sender {
