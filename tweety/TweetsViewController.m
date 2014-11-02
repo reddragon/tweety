@@ -31,7 +31,7 @@
     self.tweetList.delegate = self;
     self.tweetList.dataSource = self;
     [self.tweetList registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
-    self.tweetList.rowHeight = 100;
+    self.tweetList.rowHeight = UITableViewAutomaticDimension;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tweetList insertSubview:self.refreshControl atIndex:0];

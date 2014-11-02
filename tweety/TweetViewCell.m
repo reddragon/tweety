@@ -31,7 +31,10 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
-    [self.tweetTimestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
+    // [self.tweetTimestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
+    // TODO
+    // Fix the timestamp later
+    [self.tweetTimestamp setText:@"100d ago"];
     
     [self.profileImage setImageWithURL:tweet.biggerImageURL];
     [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
