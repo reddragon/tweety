@@ -8,6 +8,7 @@
 
 #import "TweetViewCell.h"
 #import "TwitterClient.h"
+#import "FormatterKit/TTTTimeIntervalFormatter.h"
 #import "UIImageView+AFNetworking.h"
 
 @implementation TweetViewCell
@@ -57,9 +58,12 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
     // [self.tweetTimestamp setText:[dateFormatter stringFromDate:tweet.createdAt]];
+    NSDate* creationDate = tweet.createdAt;
+    NSTimeInterval sinceThen = [creationDate timeIntervalSinceNow];
+    
     // TODO
     // Fix the timestamp later
-    [self.tweetTimestamp setText:@"100d ago"];
+    [self.tweetTimestamp setText:[NSString stringWithFormat:@"%@", [[[TTTTimeIntervalFormatter alloc] init] stringForTimeInterval:sinceThen]]];
     
     [self.profileImage setImageWithURL:tweet.biggerImageURL];
     [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
