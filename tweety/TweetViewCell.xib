@@ -21,13 +21,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My2-5c-GoI">
-                        <rect key="frame" x="264.5" y="8" width="58.5" height="13.5"/>
+                        <rect key="frame" x="264" y="8" width="58.5" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TC-dB-tUi">
-                        <rect key="frame" x="76" y="32" width="247" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TC-dB-tUi">
+                        <rect key="frame" x="76" y="32" width="242" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="245" id="hPP-st-STr"/>
                         </constraints>
@@ -70,6 +70,9 @@
                         <state key="normal" image="retweet">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Aot-00-mQO"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeY-ze-KFb">
                         <rect key="frame" x="128" y="75" width="16" height="16"/>
@@ -80,6 +83,9 @@
                         <state key="normal" title="Button" image="favorite">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="V8Q-Xu-kOk"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWw-Af-pLu">
                         <rect key="frame" x="100" y="75" width="20" height="16"/>
@@ -117,16 +123,18 @@
                     <constraint firstItem="oT9-93-Vdn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="kFH-bb-03X"/>
                     <constraint firstAttribute="bottom" secondItem="kWw-Af-pLu" secondAttribute="bottom" constant="8" id="kfv-M9-xFf"/>
                     <constraint firstItem="My2-5c-GoI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="lvI-Pw-X3q"/>
-                    <constraint firstAttribute="trailing" secondItem="3TC-dB-tUi" secondAttribute="trailing" constant="20" id="nBa-wX-IRs"/>
+                    <constraint firstAttribute="trailing" secondItem="3TC-dB-tUi" secondAttribute="trailing" constant="25" id="nBa-wX-IRs"/>
                     <constraint firstItem="My2-5c-GoI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oT9-93-Vdn" secondAttribute="trailing" constant="8" id="xGi-hk-Ey5"/>
                     <constraint firstAttribute="trailing" secondItem="My2-5c-GoI" secondAttribute="trailing" constant="20" id="yzo-Aj-kYV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="favoriteButton" destination="MeY-ze-KFb" id="tQ5-JN-8wK"/>
                 <outlet property="favoriteCount" destination="MLa-rm-Jez" id="QVT-W7-L5W"/>
                 <outlet property="handle" destination="oT9-93-Vdn" id="AxF-Pl-EUp"/>
                 <outlet property="profileImage" destination="p6y-x5-pWw" id="TMQ-Z8-62W"/>
                 <outlet property="realName" destination="PPW-wi-t4b" id="86h-uB-P7s"/>
+                <outlet property="retweetButton" destination="PlG-ip-seT" id="BVC-bi-sDf"/>
                 <outlet property="retweetCount" destination="kWw-Af-pLu" id="Ing-dC-Ypo"/>
                 <outlet property="tweetText" destination="3TC-dB-tUi" id="7Ce-bg-Xow"/>
                 <outlet property="tweetTimestamp" destination="My2-5c-GoI" id="KQi-PY-1zB"/>

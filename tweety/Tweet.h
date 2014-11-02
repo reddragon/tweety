@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSNumber* favoriteCount;
 @property (nonatomic, strong) NSString* realName;
 @property (nonatomic, strong) NSString* handle;
+@property BOOL retweeted;
+@property BOOL favorited;
 
 - (id)initWithDictionary:(NSDictionary*)dictionary;
 + (NSArray *)tweetsWithArray:(NSArray*)array;

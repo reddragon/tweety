@@ -21,6 +21,12 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)onRetweet:(id)sender {
+}
+
+- (IBAction)onFavorite:(id)sender {
+}
+
 - (void)initWithTweet:(Tweet *)tweet {
     self.tweet = tweet;
     [self.tweetText setText:tweet.text];
@@ -41,7 +47,33 @@
     self.profileImage.clipsToBounds = YES;
     self.profileImage.layer.borderWidth = 3.0f;
     self.profileImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    [self setButtonImages];
+}
 
+- (void)setButtonImages {
+    UIImage* retweetImage = [UIImage imageNamed:@"retweet"];
+    UIImage* retweetGrayImage = [UIImage imageNamed:@"retweet_gray"];
+
+    UIImage* favImage = [UIImage imageNamed:@"favorite"];
+    UIImage* favGrayImage = [UIImage imageNamed:@"favorite_gray"];
+    
+    if (self.tweet.retweeted) {
+        [self.retweetButton setImage:retweetImage forState:UIControlStateNormal];
+        [self.retweetButton setImage:retweetGrayImage forState:UIControlStateHighlighted];
+        
+    } else {
+        [self.retweetButton setImage:retweetGrayImage forState:UIControlStateNormal];
+        [self.retweetButton setImage:retweetImage forState:UIControlStateHighlighted];
+    }
+    
+    if (self.tweet.favorited) {
+        [self.favoriteButton setImage:favImage forState:UIControlStateNormal];
+        [self.favoriteButton setImage:favGrayImage forState:UIControlStateHighlighted];
+    } else {
+        [self.favoriteButton setImage:favGrayImage forState:UIControlStateNormal];
+        [self.favoriteButton setImage:favImage forState:UIControlStateHighlighted];
+    }
 }
 
 @end

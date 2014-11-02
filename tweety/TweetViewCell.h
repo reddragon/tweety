@@ -18,6 +18,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *handle;
 @property (strong, nonatomic) IBOutlet UILabel *retweetCount;
 @property (strong, nonatomic) IBOutlet UILabel *favoriteCount;
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+@property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
+- (IBAction)onRetweet:(id)sender;
+- (IBAction)onFavorite:(id)sender;
 
 - (void)initWithTweet:(Tweet*)tweet;
 @end

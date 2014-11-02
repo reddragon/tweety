@@ -28,6 +28,9 @@
         self.favoriteCount = dictionary[@"favourite_count"];
         self.handle = dictionary[@"user"][@"screen_name"];
         self.realName = dictionary[@"user"][@"name"];
+        
+        self.retweeted = [dictionary[@"retweeted"] boolValue];
+        self.favorited = [dictionary[@"favorited"] boolValue];
         // NSLog(@"Dictionary: %@", dictionary);
     }
     return self;
