@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
             <connections>
+                <outlet property="numChars" destination="hq2-vw-i3e" id="BJQ-0O-F8Z"/>
                 <outlet property="profileImage" destination="0r9-a6-l4w" id="g2w-Uf-Es3"/>
                 <outlet property="screenName" destination="aRL-7o-OIV" id="pU7-re-QwT"/>
                 <outlet property="tweetText" destination="Jht-hY-Vm4" id="YkZ-05-fq4"/>
@@ -49,9 +50,16 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Say something." translatesAutoresizingMaskIntoConstraints="NO" id="Jht-hY-Vm4">
                     <rect key="frame" x="8" y="145" width="304" height="300"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.58215862770000004" green="0.58215862770000004" blue="0.58215862770000004" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-vw-i3e">
+                    <rect key="frame" x="283" y="70" width="27" height="21"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -60,8 +68,10 @@
                 <constraint firstItem="aRL-7o-OIV" firstAttribute="leading" secondItem="0r9-a6-l4w" secondAttribute="trailing" constant="8" id="UIt-wH-wGL"/>
                 <constraint firstItem="0r9-a6-l4w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="W5q-2V-UjB"/>
                 <constraint firstItem="c4F-ZT-itz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Wwt-FC-qtk"/>
+                <constraint firstAttribute="trailing" secondItem="hq2-vw-i3e" secondAttribute="trailing" constant="10" id="afo-K7-mkJ"/>
                 <constraint firstItem="8jq-1l-N2D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="e6z-fz-hT8"/>
                 <constraint firstItem="c4F-ZT-itz" firstAttribute="leading" secondItem="0r9-a6-l4w" secondAttribute="trailing" constant="8" id="gRU-oP-z4g"/>
+                <constraint firstItem="hq2-vw-i3e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="k89-Hb-9jU"/>
                 <constraint firstItem="8jq-1l-N2D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="mPG-WS-EV7"/>
             </constraints>
             <point key="canvasLocation" x="141" y="164"/>

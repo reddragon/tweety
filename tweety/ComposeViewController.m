@@ -11,6 +11,8 @@
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 
+NSString* const kPlaceholderStr = @"Say something.";
+
 @interface ComposeViewController ()
 @property (weak, nonatomic) User* user;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
@@ -35,7 +37,47 @@
     self.profileImage.clipsToBounds = YES;
     self.profileImage.layer.borderWidth = 3.0f;
     self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
+    self.tweetText.delegate = self;
+    self.tweetText.text = kPlaceholderStr;
+    self.tweetText.textColor = [UIColor lightGrayColor];
+    [self changeNumChars];
+}
 
+- (void)changeNumChars {
+    long remaining = 140;
+    if (![self.tweetText.text isEqualToString:kPlaceholderStr]) {
+        remaining = remaining - self.tweetText.text.length;
+    }
+    if (remaining > 0) {
+        // Set blue color
+        self.numChars.textColor = [UIColor blackColor];
+    } else {
+        // Set red color
+        self.numChars.textColor = [UIColor redColor];
+    }
+    // Set text
+    [self.numChars setText:[NSString stringWithFormat:@"%ld", remaining]];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:kPlaceholderStr]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSLog(@"Called");
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = kPlaceholderStr;
+        textView.textColor = [UIColor lightGrayColor];
+    }
+    [textView resignFirstResponder];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    [self changeNumChars];
 }
 
 - (void)didReceiveMemoryWarning {
