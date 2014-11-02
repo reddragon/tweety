@@ -44,15 +44,15 @@
     [tableFooterView addSubview:loadingView];
     self.tweetList.tableFooterView = tableFooterView;
     UIBarButtonItem* composeButton = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
-    composeButton.tintColor = [UIColor whiteColor];
+    // composeButton.tintColor = [UIColor whiteColor];
     UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
-    logoutButton.tintColor = [UIColor whiteColor];
+    // logoutButton.tintColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = logoutButton;
     self.navigationItem.rightBarButtonItem = composeButton;
     self.navigationItem.title = @"Home";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:153.0/255.0 blue:255.0/255.0 alpha:1.0]];
-    [self.navigationController.navigationBar setBarStyle:UIStatusBarStyleLightContent];
+    // [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:153.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    // [self.navigationController.navigationBar setBarStyle:UIStatusBarStyleLightContent];
     
     [self loadDataToTop:YES];
 }
@@ -109,11 +109,12 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Tweet* t = self.tweets[indexPath.row];
-    self.prototypeCell.tweetText.text = t.text;
+    [self.prototypeCell initWithTweet:t];
+    // self.prototypeCell.tweetText.text = t.text;
     CGSize size = [self.prototypeBusinessCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height + 20;
+    return size.height + 1;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

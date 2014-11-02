@@ -66,10 +66,10 @@
     [self.tweetTimestamp setText:[NSString stringWithFormat:@"%@", [[[TTTTimeIntervalFormatter alloc] init] stringForTimeInterval:sinceThen]]];
     
     [self.profileImage setImageWithURL:tweet.biggerImageURL];
-    [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
-    self.profileImage.clipsToBounds = YES;
-    self.profileImage.layer.borderWidth = 3.0f;
-    self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
+    // [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
+    // self.profileImage.clipsToBounds = YES;
+    // self.profileImage.layer.borderWidth = 3.0f;
+    // self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
     
     [self setButtonImages];
 }

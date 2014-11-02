@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-yk-QlP">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-yk-QlP">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -24,6 +24,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8lq-yk-QlP" secondAttribute="bottom" id="A2H-rp-2L4"/>
                 <constraint firstItem="8lq-yk-QlP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E7V-Cn-7yQ"/>
+                <constraint firstItem="8lq-yk-QlP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n0z-en-vXp"/>
                 <constraint firstAttribute="trailing" secondItem="8lq-yk-QlP" secondAttribute="trailing" id="u9H-9u-J7N"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
