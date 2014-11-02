@@ -22,8 +22,14 @@
 }
 
 - (IBAction)onRetweet:(id)sender {
+    if (self.tweet.retweeted == false) {
+        self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] + 1];
+    } else {
+        self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] - 1];
+    }
     self.tweet.retweeted = !self.tweet.retweeted;
     [self setButtonImages];
+    [self.retweetCount setText:[self.tweet.retweetCount stringValue]];
 }
 
 - (IBAction)onFavorite:(id)sender {
@@ -50,7 +56,7 @@
     [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
     self.profileImage.clipsToBounds = YES;
     self.profileImage.layer.borderWidth = 3.0f;
-    self.profileImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
     
     [self setButtonImages];
 }
