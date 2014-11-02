@@ -22,9 +22,13 @@
 }
 
 - (IBAction)onRetweet:(id)sender {
+    self.tweet.retweeted = !self.tweet.retweeted;
+    [self setButtonImages];
 }
 
 - (IBAction)onFavorite:(id)sender {
+    self.tweet.favorited = !self.tweet.favorited;
+    [self setButtonImages];
 }
 
 - (void)initWithTweet:(Tweet *)tweet {
