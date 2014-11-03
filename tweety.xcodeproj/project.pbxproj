@@ -22,6 +22,7 @@
 		C63BEB3419FF80B5009F4B69 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63BEB3219FF80B5009F4B69 /* TweetsViewController.xib */; };
 		C63BEB381A00972A009F4B69 /* TweetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C63BEB361A00972A009F4B69 /* TweetViewCell.m */; };
 		C63BEB391A00972A009F4B69 /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63BEB371A00972A009F4B69 /* TweetViewCell.xib */; };
+		C689D94D1A0716FB005BDE7D /* TimeAbbreviator.m in Sources */ = {isa = PBXBuildFile; fileRef = C689D94C1A0716FB005BDE7D /* TimeAbbreviator.m */; };
 		C6F315971A00A4D700715504 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F315951A00A4D700715504 /* TweetDetailViewController.m */; };
 		C6F315981A00A4D700715504 /* TweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6F315961A00A4D700715504 /* TweetDetailViewController.xib */; };
 		C6F3159C1A00AB6B00715504 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F3159A1A00AB6B00715504 /* ComposeViewController.m */; };
@@ -66,6 +67,8 @@
 		C63BEB351A00972A009F4B69 /* TweetViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewCell.h; sourceTree = "<group>"; };
 		C63BEB361A00972A009F4B69 /* TweetViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewCell.m; sourceTree = "<group>"; };
 		C63BEB371A00972A009F4B69 /* TweetViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewCell.xib; sourceTree = "<group>"; };
+		C689D94B1A0716FB005BDE7D /* TimeAbbreviator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeAbbreviator.h; sourceTree = "<group>"; };
+		C689D94C1A0716FB005BDE7D /* TimeAbbreviator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeAbbreviator.m; sourceTree = "<group>"; };
 		C6F315941A00A4D700715504 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		C6F315951A00A4D700715504 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
 		C6F315961A00A4D700715504 /* TweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetDetailViewController.xib; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		C62DCDC019FF590200D8F900 /* tweety */ = {
 			isa = PBXGroup;
 			children = (
+				C689D94A1A0716BE005BDE7D /* Helpers */,
 				C62DCDEF19FF689500D8F900 /* Models */,
 				C62DCDC519FF590200D8F900 /* AppDelegate.h */,
 				C62DCDC619FF590200D8F900 /* AppDelegate.m */,
@@ -196,6 +200,15 @@
 				C62DCDF419FF68D500D8F900 /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		C689D94A1A0716BE005BDE7D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C689D94B1A0716FB005BDE7D /* TimeAbbreviator.h */,
+				C689D94C1A0716FB005BDE7D /* TimeAbbreviator.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +354,7 @@
 				C62DCDC719FF590200D8F900 /* AppDelegate.m in Sources */,
 				C62DCDF519FF68D500D8F900 /* User.m in Sources */,
 				C6F3159C1A00AB6B00715504 /* ComposeViewController.m in Sources */,
+				C689D94D1A0716FB005BDE7D /* TimeAbbreviator.m in Sources */,
 				C62DCDF219FF68CB00D8F900 /* Tweet.m in Sources */,
 				C62DCDC419FF590200D8F900 /* main.m in Sources */,
 				C6F315971A00A4D700715504 /* TweetDetailViewController.m in Sources */,

@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         self.text = dictionary[@"text"];
+        self.isFake = false;
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         NSString* createdAt = dictionary[@"created_at"];
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
@@ -25,6 +26,9 @@
         
         self.tId = dictionary[@"id"];
         self.retweetCount = dictionary[@"retweet_count"];
+        if (self.retweetCount == nil) {
+            self.retweetCount = [NSNumber numberWithInt:0];
+        }
         self.favoriteCount = dictionary[@"favourites_count"];
         if (self.favoriteCount == nil) {
             self.favoriteCount = [NSNumber numberWithInt:0];
@@ -35,6 +39,24 @@
         self.retweeted = [dictionary[@"retweeted"] boolValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         // NSLog(@"Dictionary: %@", dictionary);
+    }
+    return self;
+}
+
+- (id)initFakeTweetWithText:(NSString *)text {
+    self = [super init];
+    if (self) {
+        User* user = [User user];
+        self.handle = user.screenName;
+        self.realName = user.name;
+        self.retweeted = false;
+        self.favorited = false;
+        self.retweetCount = 0;
+        self.favoriteCount = 0;
+        self.imageURL = user.profileImageUrl;
+        self.biggerImageURL = user.profileImageUrl;
+        self.text = text;
+        NSLog(@"User name: %@, url: %@", self.realName, self.imageURL);
     }
     return self;
 }

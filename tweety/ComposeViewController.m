@@ -8,6 +8,7 @@
 
 #import "ComposeViewController.h"
 #import "TwitterClient.h"
+#import "Tweet.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 
@@ -19,6 +20,7 @@ NSString* const kPlaceholderStr = @"Say something.";
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *screenName;
 @property (strong, nonatomic) IBOutlet UITextView *tweetText;
+@property (strong, nonatomic) Tweet* inReplyTo;
 - (IBAction)onTweetSubmit:(id)sender;
 
 @end
@@ -38,13 +40,23 @@ NSString* const kPlaceholderStr = @"Say something.";
     self.profileImage.layer.borderWidth = 3.0f;
     self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
     self.tweetText.delegate = self;
-    self.tweetText.text = kPlaceholderStr;
     self.tweetText.textColor = [UIColor lightGrayColor];
+    if (self.inReplyTo != nil) {
+        self.tweetText.text = [NSString stringWithFormat:@"@%@ ", self.inReplyTo.user.screenName];
+        self.tweetText.textColor = [UIColor blackColor];
+    } else {
+        self.tweetText.text = kPlaceholderStr;
+    }
     [self changeNumChars];
     self.navigationItem.title = @"Compose";
     
     UIBarButtonItem* sendTweet = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetSubmit:)];
     self.navigationItem.rightBarButtonItem = sendTweet;
+}
+
+- (id) initWithReplyToTweet:(Tweet *)tweet {
+    self.inReplyTo = tweet;
+    return self;
 }
 
 - (void)changeNumChars {
@@ -101,12 +113,33 @@ NSString* const kPlaceholderStr = @"Say something.";
 
 - (IBAction)onTweetSubmit:(id)sender {
     if (self.tweetText.text.length <= 140) {
-        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweetText.text, @"status", nil];
+        /*
+        NSString* inReplyToId = nil;
+        if (self.inReplyTo != nil) {
+            inReplyToId = self.inReplyTo.tId;
+        }
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweetText.text, @"status",inReplyToId, @"in_reply_to_status_id", nil];
+        
         [[TwitterClient sharedInstance] updateStatusWithParams:dict completion:^(NSError *error) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
+        */
+        
+        id<TweetSenderDelegate> sdelegate = self.delegate;
+        if (self.delegate != nil) {
+            Tweet* t = [[Tweet alloc] initFakeTweetWithText:self.tweetText.text];
+            if ([sdelegate respondsToSelector:@selector(onSendTweet:)]) {
+                NSLog(@"It responds!");
+                [sdelegate onSendTweet:t];
+            } else {
+                NSLog(@"No, it doesn't");
+            }
+            
+        }
+        
     } else {
         NSLog(@"Can't do. Too long tweet!");
     }
+    
 }
 @end

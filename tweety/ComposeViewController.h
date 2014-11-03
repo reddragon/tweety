@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
+
+@protocol TweetSenderDelegate <NSObject>
+- (void)onSendTweet:(Tweet *)tweet;
+@end
 
 @interface ComposeViewController : UIViewController<UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *numChars;
-
+- (id)initWithReplyToTweet:(Tweet*)tweet;
+@property (weak, nonatomic) id<TweetSenderDelegate> delegate;
 @end

@@ -32,6 +32,7 @@
     self.tweetList.delegate = self;
     self.tweetList.dataSource = self;
     [self.tweetList registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
+    self.tweetList.estimatedRowHeight = 100;
     self.tweetList.rowHeight = UITableViewAutomaticDimension;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
@@ -61,12 +62,21 @@
             Tweet* t = self.tweets[0];
             params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"since_id", nil];
         } else {
-            Tweet*t = self.tweets[self.tweets.count - 1];
+            Tweet* t = self.tweets[self.tweets.count - 1];
             params = [[NSDictionary alloc] initWithObjectsAndKeys:t.tId, @"max_id", nil];
         }
     }
     [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
         if (tweets != nil) {
+            // Remove fake tweets
+            NSMutableArray* fakeArray = [[NSMutableArray alloc] init];
+            for (Tweet* t in self.tweets) {
+                if (t.isFake) {
+                    [fakeArray addObject:t];
+                }
+            }
+            [self.tweets removeObjectsInArray:fakeArray];
+            
             NSLog(@"Number of tweets received: %lu, size before: %lu", tweets.count, self.tweets.count);
             
             if (refreshFromTop) {
@@ -78,13 +88,16 @@
             }
             NSLog(@"Tweet list final size: %ld", self.tweets.count);
             [self.tweetList reloadData];
+            [self.tweetList reloadData];
         } else {
             NSLog(@"Error: %@", error);
         }
         [self.refreshControl endRefreshing];
     }];
-    
-    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self.tweetList reloadData];
 }
 
 - (void)onRefresh {
@@ -105,18 +118,18 @@
     return _prototypeCell;
 }
 
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Tweet* t = self.tweets[indexPath.row];
     [self.prototypeCell initWithTweet:t];
     // self.prototypeCell.tweetText.text = t.text;
     CGSize size = [self.prototypeBusinessCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height + 1;
-}
+}*/
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetViewCell* cell = [self.tweetList dequeueReusableCellWithIdentifier:@"TweetViewCell"];
-    [cell initWithTweet:self.tweets[indexPath.row]];
+    [cell initWithTweet:self.tweets[indexPath.row] parent:self];
     if (indexPath.row == self.tweets.count - 1) {
         [self loadDataToTop:NO];
     }
@@ -150,6 +163,13 @@
 - (IBAction)onCompose:(id)sender {
     NSLog(@"Hitting onCompose");
     ComposeViewController* cvc = [[ComposeViewController alloc] init];
+    cvc.delegate = self;
     [self.navigationController pushViewController:cvc animated:YES];
+}
+
+- (void) onSendTweet:(Tweet *)tweet {
+    NSLog(@"Received a tweet");
+    [self.tweets insertObject:tweet atIndex:0];
+    // NSLog(@"Fake tweet name: %@", )
 }
 @end

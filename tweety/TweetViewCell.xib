@@ -26,26 +26,17 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TC-dB-tUi">
-                        <rect key="frame" x="76" y="31.5" width="242" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TC-dB-tUi">
+                        <rect key="frame" x="76" y="27" width="23" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Gln-Df-6WS"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="VT3-7n-MNj"/>
-                            <constraint firstAttribute="width" constant="245" id="hPP-st-STr"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="KJj-Ei-DES"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Gln-Df-6WS"/>
-                                <exclude reference="VT3-7n-MNj"/>
-                                <exclude reference="hPP-st-STr"/>
-                            </mask>
-                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-wi-t4b">
-                        <rect key="frame" x="76" y="8" width="33" height="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-wi-t4b">
+                        <rect key="frame" x="76" y="8" width="33" height="11"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -107,12 +98,26 @@
                             </mask>
                         </variation>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4X-ui-wH3">
+                        <rect key="frame" x="185" y="75" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="FVW-wt-T9l"/>
+                            <constraint firstAttribute="width" constant="16" id="UXD-qa-iqN"/>
+                        </constraints>
+                        <state key="normal" image="reply">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ctg-8l-kAD"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3TC-dB-tUi" firstAttribute="top" secondItem="PPW-wi-t4b" secondAttribute="bottom" constant="9.5" id="A0i-Mh-HO1"/>
+                    <constraint firstItem="3TC-dB-tUi" firstAttribute="top" secondItem="PPW-wi-t4b" secondAttribute="bottom" constant="8" id="A0i-Mh-HO1"/>
                     <constraint firstAttribute="bottom" secondItem="PlG-ip-seT" secondAttribute="bottom" constant="8" id="C94-LB-OrG"/>
                     <constraint firstItem="MLa-rm-Jez" firstAttribute="leading" secondItem="MeY-ze-KFb" secondAttribute="trailing" constant="8" id="D8D-t5-V2h"/>
                     <constraint firstItem="PPW-wi-t4b" firstAttribute="leading" secondItem="p6y-x5-pWw" secondAttribute="trailing" constant="8" id="Ecb-zW-62X"/>
+                    <constraint firstItem="a4X-ui-wH3" firstAttribute="leading" secondItem="MLa-rm-Jez" secondAttribute="trailing" constant="13" id="GwS-Mf-a8t"/>
                     <constraint firstItem="p6y-x5-pWw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Hw6-UB-aPO"/>
                     <constraint firstItem="kWw-Af-pLu" firstAttribute="leading" secondItem="PlG-ip-seT" secondAttribute="trailing" constant="8" id="K6E-4c-x8O"/>
                     <constraint firstItem="oT9-93-Vdn" firstAttribute="leading" secondItem="PPW-wi-t4b" secondAttribute="trailing" constant="8" id="LfR-1H-PaI"/>
@@ -127,8 +132,9 @@
                     <constraint firstItem="oT9-93-Vdn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="kFH-bb-03X"/>
                     <constraint firstAttribute="bottom" secondItem="kWw-Af-pLu" secondAttribute="bottom" constant="8" id="kfv-M9-xFf"/>
                     <constraint firstItem="My2-5c-GoI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="lvI-Pw-X3q"/>
-                    <constraint firstAttribute="trailing" secondItem="3TC-dB-tUi" secondAttribute="trailing" constant="25" id="nBa-wX-IRs"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3TC-dB-tUi" secondAttribute="trailing" constant="25" id="nBa-wX-IRs"/>
                     <constraint firstItem="My2-5c-GoI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oT9-93-Vdn" secondAttribute="trailing" constant="8" id="xGi-hk-Ey5"/>
+                    <constraint firstAttribute="bottom" secondItem="a4X-ui-wH3" secondAttribute="bottom" constant="8" id="yqP-2k-IUv"/>
                     <constraint firstAttribute="trailing" secondItem="My2-5c-GoI" secondAttribute="trailing" constant="20" id="yzo-Aj-kYV"/>
                 </constraints>
             </tableViewCellContentView>
@@ -148,6 +154,7 @@
     </objects>
     <resources>
         <image name="favorite" width="16" height="16"/>
+        <image name="reply" width="16" height="16"/>
         <image name="retweet" width="16" height="16"/>
     </resources>
 </document>

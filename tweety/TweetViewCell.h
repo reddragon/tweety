@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)onRetweet:(id)sender;
 - (IBAction)onFavorite:(id)sender;
+- (IBAction)onReply:(id)sender;
 
-- (void)initWithTweet:(Tweet*)tweet;
+- (void)initWithTweet:(Tweet*)tweet parent:(UIViewController*)parent;
 @end

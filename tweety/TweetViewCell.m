@@ -8,8 +8,15 @@
 
 #import "TweetViewCell.h"
 #import "TwitterClient.h"
+#import "TimeAbbreviator.h"
 #import "FormatterKit/TTTTimeIntervalFormatter.h"
+#import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
+
+@interface TweetViewCell ()
+@property (weak, nonatomic) UIViewController* parent;
+@end
+
 
 @implementation TweetViewCell
 
@@ -47,9 +54,17 @@
     
 }
 
-- (void)initWithTweet:(Tweet *)tweet {
+- (IBAction)onReply:(id)sender {
+    ComposeViewController* cvc = [[ComposeViewController alloc] initWithReplyToTweet:self.tweet];
+    cvc.delegate = self.parent;
+    [self.parent.navigationController pushViewController:cvc animated:YES];
+}
+
+- (void)initWithTweet:(Tweet *)tweet parent:(UIViewController*)parent {
     self.tweet = tweet;
+    self.parent = parent;
     [self.tweetText setText:tweet.text];
+    self.tweetText.numberOfLines = 10;
     [self.realName setText:tweet.realName];
     [self.handle setText:[NSString stringWithFormat:@"@%@", tweet.handle]];
     [self.retweetCount setText:[tweet.retweetCount stringValue]];
@@ -63,7 +78,7 @@
     
     // TODO
     // Fix the timestamp later
-    [self.tweetTimestamp setText:[NSString stringWithFormat:@"%@", [[[TTTTimeIntervalFormatter alloc] init] stringForTimeInterval:sinceThen]]];
+    [self.tweetTimestamp setText:[NSString stringWithFormat:@"%@", [TimeAbbreviator abbreviatedTime:sinceThen]]];
     
     [self.profileImage setImageWithURL:tweet.biggerImageURL];
     [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];

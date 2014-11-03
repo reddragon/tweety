@@ -23,7 +23,9 @@
 @property (nonatomic, strong) NSString* handle;
 @property BOOL retweeted;
 @property BOOL favorited;
+@property BOOL isFake;
 
 - (id)initWithDictionary:(NSDictionary*)dictionary;
+- (id)initFakeTweetWithText:(NSString*)text;
 + (NSArray *)tweetsWithArray:(NSArray*)array;
 @end
