@@ -113,7 +113,6 @@ NSString* const kPlaceholderStr = @"Say something.";
 
 - (IBAction)onTweetSubmit:(id)sender {
     if (self.tweetText.text.length <= 140) {
-        /*
         NSString* inReplyToId = nil;
         if (self.inReplyTo != nil) {
             inReplyToId = self.inReplyTo.tId;
@@ -123,7 +122,6 @@ NSString* const kPlaceholderStr = @"Say something.";
         [[TwitterClient sharedInstance] updateStatusWithParams:dict completion:^(NSError *error) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
-        */
         
         id<TweetSenderDelegate> sdelegate = self.delegate;
         if (self.delegate != nil) {
