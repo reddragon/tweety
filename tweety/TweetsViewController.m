@@ -171,7 +171,6 @@
 - (void) onSendTweet:(Tweet *)tweet {
     NSLog(@"Received a tweet");
     [self.tweets insertObject:tweet atIndex:0];
-    // NSLog(@"Fake tweet name: %@", )
 }
 
 - (void)replyToTweet:(Tweet *)tweet {

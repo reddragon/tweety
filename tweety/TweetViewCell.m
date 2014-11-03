@@ -50,7 +50,14 @@
     NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
     [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil destroy:self.tweet.favorited];
     self.tweet.favorited = !self.tweet.favorited;
+    
+    if (self.tweet.favorited == true) {
+        self.tweet.favoriteCount = [NSNumber numberWithInt:[self.tweet.favoriteCount intValue] + 1];
+    } else {
+        self.tweet.favoriteCount = [NSNumber numberWithInt:[self.tweet.favoriteCount intValue] - 1];
+    }
     [self setButtonImages];
+    [self.favoriteCount setText:[self.tweet.favoriteCount stringValue]];
     
 }
 
@@ -106,9 +113,11 @@
     }
     
     if (self.tweet.favorited) {
+        NSLog(@"Is favorited");
         [self.favoriteButton setImage:favImage forState:UIControlStateNormal];
         [self.favoriteButton setImage:favGrayImage forState:UIControlStateHighlighted];
     } else {
+        NSLog(@"Is not favorited");
         [self.favoriteButton setImage:favGrayImage forState:UIControlStateNormal];
         [self.favoriteButton setImage:favImage forState:UIControlStateHighlighted];
     }

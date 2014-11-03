@@ -51,8 +51,8 @@
         self.realName = user.name;
         self.retweeted = false;
         self.favorited = false;
-        self.retweetCount = 0;
-        self.favoriteCount = 0;
+        self.retweetCount = [NSNumber numberWithInt:0];
+        self.favoriteCount = [NSNumber numberWithInt:0];
         self.imageURL = user.profileImageUrl;
         self.biggerImageURL = user.profileImageUrl;
         self.text = text;
