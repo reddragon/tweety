@@ -120,7 +120,7 @@ NSString* const kBaseUrl = @"https://api.twitter.com";
     }
     
    [self POST:endpoint parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Looks like it succeeded: %@", responseObject);
+        // NSLog(@"Looks like it succeeded: %@", responseObject);
         if (completion != nil) {
             completion(nil);
         }

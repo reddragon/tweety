@@ -14,9 +14,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Eyd-eD-8BW">
+                    <rect key="frame" x="99" y="192" width="119" height="97"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="97" id="ULe-qO-ljd"/>
+                        <constraint firstAttribute="width" constant="119" id="fbJ-qJ-iCz"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjg-dd-TrH">
-                    <rect key="frame" x="100" y="200" width="123" height="30"/>
-                    <state key="normal" title="Login With Twitter">
+                    <rect key="frame" x="135" y="330" width="51" height="35"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
+                    <state key="normal" title="Login">
+                        <color key="titleColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -24,14 +33,19 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
-                <constraint firstItem="fjg-dd-TrH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="moQ-FZ-lXd"/>
-                <constraint firstItem="fjg-dd-TrH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="ni0-PE-Pqf"/>
+                <constraint firstItem="Eyd-eD-8BW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="192" id="DN5-Z1-0yR"/>
+                <constraint firstItem="fjg-dd-TrH" firstAttribute="top" secondItem="Eyd-eD-8BW" secondAttribute="bottom" constant="41" id="jbI-66-WJ9"/>
+                <constraint firstItem="fjg-dd-TrH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jmE-bb-Y13"/>
+                <constraint firstItem="Eyd-eD-8BW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="99" id="kv8-Vg-oVm"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </view>
     </objects>
+    <resources>
+        <image name="twitter_logo" width="1139" height="926"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

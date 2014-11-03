@@ -15,10 +15,14 @@
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimestamp;
 @property (strong, nonatomic) IBOutlet UILabel *tweetText;
 @property (weak, nonatomic) Tweet* tweet;
-
-- (IBAction)onFavorite:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *screenName;
+@property (strong, nonatomic) IBOutlet UILabel *numRetweets;
+@property (strong, nonatomic) IBOutlet UILabel *numFavorites;
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+@property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)onRetweet:(id)sender;
-
+- (IBAction)onFavorite:(id)sender;
 
 @end
 
@@ -33,7 +37,17 @@
         [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
         [self.tweetTimestamp setText:[dateFormatter stringFromDate:self.tweet.createdAt]];
         
-        [self.profileImage setImageWithURL:self.tweet.imageURL];
+        [self.profileImage setImageWithURL:self.tweet.biggerImageURL];
+        [self.profileImage.layer setCornerRadius:self.profileImage.frame.size.width / 2];
+        self.profileImage.clipsToBounds = YES;
+        self.profileImage.layer.borderWidth = 3.0f;
+        self.profileImage.layer.borderColor = [UIColor colorWithRed:220/255.0 green:235/255.0 blue:252.0/255.0 alpha:1.0].CGColor;
+        [self.userName setText:self.tweet.realName];
+        [self.screenName setText:self.tweet.handle];
+        [self.numRetweets setText:[self.tweet.retweetCount stringValue]];
+        [self.numFavorites setText:[self.tweet.favoriteCount stringValue]];
+        [self setButtonImages];
+        // NSLog(@"Tweet Dict: %@", self.tweet)
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -62,11 +76,61 @@
 
 - (IBAction)onFavorite:(id)sender {
     NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
-    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:nil destroy:false];
+    [[TwitterClient sharedInstance] favoriteWithParams:dict completion:^(NSError *error) {
+        if (error == nil) {
+            NSLog(@"Error is nil");
+            if (self.tweet.favorited) {
+                self.tweet.favoriteCount = [NSNumber numberWithInt:[self.tweet.favoriteCount intValue] - 1];
+            } else {
+                self.tweet.favoriteCount = [NSNumber numberWithInt:[self.tweet.favoriteCount intValue] + 1];
+            }
+            self.tweet.favorited = !self.tweet.favorited;
+            [self setButtonImages];
+        }
+    } destroy:self.tweet.favorited];
 }
 
 - (IBAction)onRetweet:(id)sender {
-    NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
-    [[TwitterClient sharedInstance] retweetWithParams:dict completion:nil];
+    if (self.tweet.retweeted == false) {
+        self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] + 1];
+        
+        NSDictionary* dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.tweet.tId, @"id", nil];
+        [[TwitterClient sharedInstance] retweetWithParams:dict completion:nil];
+    } else {
+        self.tweet.retweetCount = [NSNumber numberWithInt:[self.tweet.retweetCount intValue] - 1];
+        // TODO
+        // Remove the tweet.
+    }
+    self.tweet.retweeted = !self.tweet.retweeted;
+    [self setButtonImages];
+    [self.numRetweets setText:[self.tweet.retweetCount stringValue]];
 }
+
+- (void)setButtonImages {
+    UIImage* retweetImage = [UIImage imageNamed:@"retweet"];
+    UIImage* retweetGrayImage = [UIImage imageNamed:@"retweet_gray"];
+    
+    UIImage* favImage = [UIImage imageNamed:@"favorite"];
+    UIImage* favGrayImage = [UIImage imageNamed:@"favorite_gray"];
+    
+    if (self.tweet.retweeted) {
+        [self.retweetButton setImage:retweetImage forState:UIControlStateNormal];
+        [self.retweetButton setImage:retweetGrayImage forState:UIControlStateHighlighted];
+        
+    } else {
+        [self.retweetButton setImage:retweetGrayImage forState:UIControlStateNormal];
+        [self.retweetButton setImage:retweetImage forState:UIControlStateHighlighted];
+    }
+    
+    if (self.tweet.favorited) {
+        [self.favoriteButton setImage:favImage forState:UIControlStateNormal];
+        [self.favoriteButton setImage:favGrayImage forState:UIControlStateHighlighted];
+    } else {
+        [self.favoriteButton setImage:favGrayImage forState:UIControlStateNormal];
+        [self.favoriteButton setImage:favImage forState:UIControlStateHighlighted];
+    }
+    [self.numFavorites setText:[self.tweet.favoriteCount stringValue]];
+    [self.numRetweets setText:[self.tweet.retweetCount stringValue]];
+}
+
 @end

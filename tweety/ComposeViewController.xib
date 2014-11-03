@@ -46,7 +46,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-vw-i3e">
-                    <rect key="frame" x="283" y="70" width="27" height="21"/>
+                    <rect key="frame" x="283" y="70" width="27" height="20.5"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>

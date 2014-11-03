@@ -31,7 +31,7 @@
         NSLog(@"Welcome %@", currentUser.name);
         TweetsViewController* tvc = [[TweetsViewController alloc] init];
         UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:tvc];
-        nc.navigationBar.barTintColor = [UIColor colorWithRed:64.0/255.0 green:153.0/255.0 blue:255.0/255.0 alpha:1.0];
+        nc.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0 green:172/255.0 blue:238.0/255.0 alpha:1.0];
         nc.navigationBar.tintColor = [UIColor whiteColor];
         [nc.navigationBar setBarStyle:UIStatusBarStyleLightContent];
         self.window.rootViewController = nc;

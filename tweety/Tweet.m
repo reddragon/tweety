@@ -17,7 +17,7 @@
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         NSString* createdAt = dictionary[@"created_at"];
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
+        formatter.dateFormat = @"EEE MMM d hh:mm:ss Z y";
         self.createdAt = [formatter dateFromString:createdAt];
         NSString* imageURLStr = dictionary[@"user"][@"profile_image_url"];
         self.imageURL = [NSURL URLWithString:imageURLStr];
@@ -25,7 +25,10 @@
         
         self.tId = dictionary[@"id"];
         self.retweetCount = dictionary[@"retweet_count"];
-        self.favoriteCount = dictionary[@"favourite_count"];
+        self.favoriteCount = dictionary[@"favourites_count"];
+        if (self.favoriteCount == nil) {
+            self.favoriteCount = [NSNumber numberWithInt:0];
+        }
         self.handle = dictionary[@"user"][@"screen_name"];
         self.realName = dictionary[@"user"][@"name"];
         

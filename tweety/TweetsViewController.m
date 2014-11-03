@@ -44,15 +44,12 @@
     [tableFooterView addSubview:loadingView];
     self.tweetList.tableFooterView = tableFooterView;
     UIBarButtonItem* composeButton = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
-    // composeButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
-    // logoutButton.tintColor = [UIColor whiteColor];
+    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout:)];
     
     self.navigationItem.leftBarButtonItem = logoutButton;
     self.navigationItem.rightBarButtonItem = composeButton;
     self.navigationItem.title = @"Home";
-    // [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:153.0/255.0 blue:255.0/255.0 alpha:1.0]];
-    // [self.navigationController.navigationBar setBarStyle:UIStatusBarStyleLightContent];
+
     
     [self loadDataToTop:YES];
 }
