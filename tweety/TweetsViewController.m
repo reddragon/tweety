@@ -143,6 +143,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TweetDetailViewController* tdvc = [[TweetDetailViewController alloc] initWithTweet:self.tweets[indexPath.row]];
+    tdvc.delegate = self;
     [self.navigationController pushViewController:tdvc animated:YES];
 }
 
@@ -171,5 +172,14 @@
     NSLog(@"Received a tweet");
     [self.tweets insertObject:tweet atIndex:0];
     // NSLog(@"Fake tweet name: %@", )
+}
+
+- (void)replyToTweet:(Tweet *)tweet {
+    NSLog(@"Received a call for a tweet %@", tweet.text);
+    
+    ComposeViewController* cvc = [[ComposeViewController alloc] initWithReplyToTweet:tweet];
+    cvc.delegate = self;
+    [self.navigationController pushViewController:cvc animated:YES];
+    
 }
 @end

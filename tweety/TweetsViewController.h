@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ComposeViewController.h"
+#import "TweetDetailViewController.h"
 
-@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TweetSenderDelegate>
+@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TweetSenderDelegate, TweetReplyDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tweetList;
 @end

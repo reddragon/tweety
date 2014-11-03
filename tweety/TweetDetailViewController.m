@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *screenName;
 @property (strong, nonatomic) IBOutlet UILabel *numRetweets;
+- (IBAction)onReply:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *numFavorites;
 @property (strong, nonatomic) IBOutlet UIButton *retweetButton;
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
@@ -133,4 +134,13 @@
     [self.numRetweets setText:[self.tweet.retweetCount stringValue]];
 }
 
+- (IBAction)onReply:(id)sender {
+    if (self.delegate != nil) {
+        id<TweetReplyDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(replyToTweet:)]) {
+            NSLog(@"Replies to delegate");
+            [delegate replyToTweet:self.tweet];
+        }
+    }
+}
 @end
